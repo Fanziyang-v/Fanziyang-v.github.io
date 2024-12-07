@@ -1,4 +1,7 @@
-# MobileNetV1
+---
+layout: default
+title: MobileNetV1
+---
 
 MobileNets 是一种轻量级模型，使用了大量的深度可分离卷积，面向于移动或嵌入式设备等计算资源有限的平台，Mobilenets 提供了两个超参数宽度乘数 $\alpha$ 和分辨率乘数 $\beta$ 来构建更轻量化的模型。
 
