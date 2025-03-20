@@ -7,7 +7,7 @@ date_format: "ordinal"
 title: Blogs
 subtitle: "Deep Learning Notebook"
 description: "马壮的个人博客，公众号：闷骚的程序员"
-keywords: 码志, Zhuang Ma, mzlogin, mazhuang, 闷骚的程序员
+keywords: deep learning, computer vision, blog, technology
 timezone: Asia/Shanghai
 encoding: "utf-8"
 # 页面左下角显示的年份
@@ -57,12 +57,12 @@ highlight_theme: github
 # ---------------- #
 #      Author      #
 # ---------------- #
-author: Zhuang Ma
+author: Ziyang Fan
 organization: 
 organization_url: 
-github_username: mzlogin
-location: Wuhan, China
-email: chumpma@gmail.com
+github_username: Fanziyang-v
+location: Shenzhen, China
+email: bugkiller.fzy@gmail.com
 
 # ---------------- #
 #    Navigation    #
