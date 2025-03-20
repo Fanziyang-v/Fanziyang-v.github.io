@@ -43,8 +43,10 @@ Transformer 结构如下图所示，Transformer 遵循**编码器-解码器**（
 与**递归神经网络**（Recurrent Neural Networks）以串行的方式处理序列信息不同，注意力机制本身不包含位置关系，因此 Transformer 需要为序列中的每个 token 添加位置信息，因此需要位置编码。Transformer 中使用了**正弦位置编码**（Sinusoidal Position Embedding），位置编码由以下数学表达式给出：
 
 $$
-\text{PE}_{pos,2i}=\sin (pos/10000^{2i/\text{d}_\text{model}})\\
-\text{PE}_{pos,2i+1}=\cos (pos/10000^{2i/\text{d}_\text{model}})
+\begin{aligned}
+&PE_{pos,2i} = \sin \left( \frac{pos}{10000^{2i/d_{\text{model}}}} \right)\\
+&PE_{pos,2i+1} = \cos \left( \frac{pos}{10000^{2i/d_{\text{model}}}} \right)
+\end{aligned}
 $$
 
 其中，pos 为 token 所在的序列位置，i 则是对应的特征维度。作者采用正弦位置编码是基于正弦位置编码可以使模型更容易学习到相对位置关系的假设。
@@ -63,6 +65,7 @@ $$
 ![attn](../images/blog/attention.png)
 
 其中，注意力计算中包含了一个**温度参数** $\sqrt{d_k}$，一个直观的解释是避免点积的结果过大或过小，导致 softmax 后的结果梯度几乎为 0 的区域，降低模型的收敛速度。对于自回归生成任务而言，我们不希望前面生成的 token 关注后面生成 token，因此可能会采用一个**下三角的 Attention Mask**，掩盖掉 attention 矩阵的上三角部分，注意力机制可以重写为：
+
 $$
 \text{Attention}(Q,K,V)=\text{softmax}(\frac{QK^T}{\sqrt{d_k}}+M)V
 $$
@@ -72,10 +75,10 @@ $$
 有趣的是，注意力机制本身**不包含可学习参数**，因此，在 Transformer 中引入了**多头注意力**机制，同时希望多头注意力能够捕捉多种模式，类似于卷积。多头注意力机制可以表示为：
 
 $$
+\begin{aligned}
 \text{MultiHead}(Q,K,V)=\text{Concat}(\text{head}_1,\text{head}_2,\dots,\text{head}_h)W^O\\
-
-
-\text{where } \text{head}_i= \text{Attention}(QW_i^Q,KW_i^K,VW_i^V)
+\text{where }\text{head}_i=\text{Attention}(QW_i^Q,KW_i^K,VW_i^V)
+\end{aligned}
 $$
 
 以下为多头注意力机制的 PyTorch 实现代码，仅供参考。
