@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Attention is all you need? 
-categories: NLP, Transformer
+categories: NLP
 description: Transformer 论文笔记
 keywords: Transformer
 mermaid: false
