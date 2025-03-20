@@ -22,7 +22,7 @@ mindmap2: false
 
 Transformer 结构如下图所示，Transformer 遵循**编码器-解码器**（Encoder-Decoder）的结构，每个 Transformer  Block 的结构**基本上相同**，其编码器和解码器可以视为**两个独立的模型**，例如：ViT 仅使用了 Transformer 编码器，而 GPT 仅使用了 Transformer 解码器。
 
-![transformer](../images/blog/transformer.png)
+![transformer](/images/blog/transformer.png)
 
 ### 编码器
 
@@ -62,7 +62,7 @@ $$
 \text{Attention}(Q,K,V)=\text{softmax}(\frac{QK^T}{\sqrt{d_k}})V
 $$
 
-![attn](../images/blog/attention.png)
+![attn](/images/blog/attention.png)
 
 其中，注意力计算中包含了一个**温度参数** $\sqrt{d_k}$，一个直观的解释是避免点积的结果过大或过小，导致 softmax 后的结果梯度几乎为 0 的区域，降低模型的收敛速度。对于自回归生成任务而言，我们不希望前面生成的 token 关注后面生成 token，因此可能会采用一个**下三角的 Attention Mask**，掩盖掉 attention 矩阵的上三角部分，注意力机制可以重写为：
 
