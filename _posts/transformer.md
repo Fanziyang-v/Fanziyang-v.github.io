@@ -1,9 +1,9 @@
 ---
 layout: post
 title: Attention is all you need? 
-categories: [NLP, Transformer]
+categories: NLP, Transformer
 description: Transformer 论文笔记
-keywords: Transformer, Attention Mechanism
+keywords: Transformer
 mermaid: false
 sequence: false
 flow: false
@@ -169,5 +169,4 @@ def _concat(tensor: Tensor) -> Tensor:
 [5] hyunwoongko. "Transformer: PyTorch Implementation of 'Attention Is All You Need' " Github 2019. [Online] Available: https://github.com/hyunwoongko/transformer
 
 [6] 李沐. "Transformer论文逐段精读【论文精读】" Bilibili 2021. [Online] Available: https://www.bilibili.com/video/BV1pu411o7BE/?spm_id_from=333.337.search-card.all.click&vd_source=c8a32a5a667964d5f1068d38d6182813
-
 
