@@ -26,13 +26,13 @@ Transformer 结构如下图所示，Transformer 遵循**编码器-解码器**（
 
 ### 编码器
 
-编码器包含 \$N=6\$ 个相同的层，每个层包含两个子层，分别是**多头自注意力层**（Multi Head Self-Attention）和**前馈神经网络层**（Feed Forward Network），每个子层都包含**残差连接**（Residual Connection）和**层归一化**（Layer Normalization），使模型更容易学习。FFN 层是一个两层的**多层感知机**（Multi Layer Perceptron）。
+编码器包含 \\(N=6\) 个相同的层，每个层包含两个子层，分别是**多头自注意力层**（Multi Head Self-Attention）和**前馈神经网络层**（Feed Forward Network），每个子层都包含**残差连接**（Residual Connection）和**层归一化**（Layer Normalization），使模型更容易学习。FFN 层是一个两层的**多层感知机**（Multi Layer Perceptron）。
 
 
 
 ### 解码器
 
-解码器也包含 \$N=6\$ 个相同的层，包含三个子层，分别是**掩码多头自注意力层**（Masked Multi-Head Attention）、**编码器-解码器多头注意力层**（Cross Attention）和前馈神经网络层。
+解码器也包含 \(N=6\) 个相同的层，包含三个子层，分别是**掩码多头自注意力层**（Masked Multi-Head Attention）、**编码器-解码器多头注意力层**（Cross Attention）和前馈神经网络层。
 
 其中，掩码多头自注意力层用于将输出的 token 进行编码，在应用注意力机制时存在一个**注意力掩码**，以保持**自回归**（Auto Regressive）特性，即先生成的 token 不能注意到后生成的 token，编码后作为 Cross Attention 层的 Query，而 Cross Attention 层的 Key 和 Value 来自于编码器的输出，最后通过 FFN 层产生解码器块的输出。
 
@@ -84,7 +84,7 @@ $$
 
 ![attn](/images/blog/attention.png)
 
-其中，注意力计算中包含了一个**温度参数** \$\sqrt{d_k}\$，一个直观的解释是避免点积的结果过大或过小，导致 softmax 后的结果梯度几乎为 0 的区域，降低模型的收敛速度。对于自回归生成任务而言，我们不希望前面生成的 token 关注后面生成 token，因此可能会采用一个**下三角的 Attention Mask**，掩盖掉 attention 矩阵的上三角部分，注意力机制可以重写为：
+其中，注意力计算中包含了一个**温度参数** \(\sqrt{d_k}\)，一个直观的解释是避免点积的结果过大或过小，导致 softmax 后的结果梯度几乎为 0 的区域，降低模型的收敛速度。对于自回归生成任务而言，我们不希望前面生成的 token 关注后面生成 token，因此可能会采用一个**下三角的 Attention Mask**，掩盖掉 attention 矩阵的上三角部分，注意力机制可以重写为：
 
 $$
 \text{Attention}(Q,K,V)=\text{softmax}(\frac{QK^T}{\sqrt{d_k}}+M)V
