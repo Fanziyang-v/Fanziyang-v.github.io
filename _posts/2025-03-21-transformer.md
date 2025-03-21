@@ -67,7 +67,7 @@ class PositionEmbedding(nn.Module):
 
     def forward(self, x: Tensor) -> Tensor:
         seq_len = x.size()[1]
-        pos_emb = self.pos_encoding[:seq_len, :].unsqueeze(0).to(x.device)
+        pos_emb = self.pe[:seq_len, :].unsqueeze(0).to(x.device)
         return pos_emb
 ```
 
